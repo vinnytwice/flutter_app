@@ -1,10 +1,7 @@
-import 'package:latlong/latlong.dart';
-import 'package:flutter_app/map/map_repository.dart';
+part of 'map_bloc.dart';
 
 abstract class MapState {
   const MapState();
-  @override
-  List<Object> get props => [];
 }
 
 class LocationStream extends MapState {
@@ -12,8 +9,9 @@ class LocationStream extends MapState {
 
   const LocationStream(this.location);
 
-  @override
-  List<Object> get props => [location];
+  factory LocationStream.initial() {
+    return LocationStream(LatLng(0, 0));
+  }
 
   @override
   String toString() => 'LocationStream {location: $location}';
@@ -23,9 +21,6 @@ class MapLoading extends MapState {
   final LatLng location;
 
   const MapLoading(this.location);
-
-  @override
-  List<Object> get props => [location];
 
   @override
   String toString() => 'LocationStream {location: $location}';
